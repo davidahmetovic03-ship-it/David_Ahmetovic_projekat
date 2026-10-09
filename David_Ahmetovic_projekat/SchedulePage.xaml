@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="David_Ahmetovic_projekat.SchedulePage"
+             Title="Raspored Časova"
+             BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="15" RowSpacing="10">
+
+        <!-- Izbor Dana u Sedmici -->
+        <ScrollView Grid.Row="0" Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+            <HorizontalStackLayout Spacing="8" x:Name="DaysStackLayout">
+                <Button Text="Ponedeljak" Clicked="OnDaySelected" BackgroundColor="#512BD4" TextColor="White" CornerRadius="8" HeightRequest="40" />
+                <Button Text="Utorak" Clicked="OnDaySelected" BackgroundColor="#E0E0E0" TextColor="Black" CornerRadius="8" HeightRequest="40" />
+                <Button Text="Sreda" Clicked="OnDaySelected" BackgroundColor="#E0E0E0" TextColor="Black" CornerRadius="8" HeightRequest="40" />
+                <Button Text="Četvrtak" Clicked="OnDaySelected" BackgroundColor="#E0E0E0" TextColor="Black" CornerRadius="8" HeightRequest="40" />
+                <Button Text="Petak" Clicked="OnDaySelected" BackgroundColor="#E0E0E0" TextColor="Black" CornerRadius="8" HeightRequest="40" />
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- Prikaz Časova za Izabrani Dan -->
+        <CollectionView x:Name="ScheduleCollectionView" Grid.Row="1">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="Nema časova za izabrani dan." FontSize="16" TextColor="Gray" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,5" Padding="15" Stroke="#E0E0E0" StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="3">
+                                <Label Text="{Binding SubjectName}" FontSize="18" FontAttributes="Bold" TextColor="#512BD4" />
+                                <Label Text="{Binding Classroom, StringFormat='Učionica: {0}'}" FontSize="14" TextColor="#333333" />
+                                <Label Text="{Binding StartTime, StringFormat='Vrijeme: {0}'}" FontSize="13" TextColor="#666666" />
+                            </VerticalStackLayout>
+
+                            <Button Grid.Column="1" 
+                                    Text="Obriši" 
+                                    Clicked="OnDeleteScheduleItemClicked" 
+                                    CommandParameter="{Binding .}" 
+                                    BackgroundColor="#FF3B30" 
+                                    TextColor="White" 
+                                    HeightRequest="35" 
+                                    FontSize="12" 
+                                    VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Akciona Dugmad na dnu (Dodaj Čas i Izvozi PDF) -->
+        <Grid Grid.Row="2" ColumnDefinitions="*, *" ColumnSpacing="10">
+            <Button Grid.Column="0" 
+                    Text="+ Dodaj Čas" 
+                    Clicked="OnAddScheduleItemClicked" 
+                    BackgroundColor="#512BD4" 
+                    TextColor="White" 
+                    HeightRequest="50" 
+                    CornerRadius="10" />
+
+            <Button Grid.Column="1" 
+                    Text="Preuzmi (PDF)" 
+                    Clicked="OnExportPdfClicked" 
+                    BackgroundColor="#2B88D4" 
+                    TextColor="White" 
+                    HeightRequest="50" 
+                    CornerRadius="10" />
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="David_Ahmetovic_projekat.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:David_Ahmetovic_projekat"
+    Title="Smart"
+    Shell.BackgroundColor="#2E7D32"
+    Shell.ForegroundColor="White"
+    Shell.TitleColor="White">
+
+    <!-- Glavni meni sa tabovima -->
+    <TabBar Route="MainApp">
+        <Tab Title="Predmeti">
+            <ShellContent ContentTemplate="{DataTemplate local:SubjectsPage}" />
+        </Tab>
+
+        <Tab Title="Raspored">
+            <ShellContent ContentTemplate="{DataTemplate local:SchedulePage}" />
+        </Tab>
+
+        <Tab Title="Kalendar">
+            <ShellContent ContentTemplate="{DataTemplate local:CalendarPage}" />
+        </Tab>
+
+        <Tab Title="Izostanci">
+            <ShellContent ContentTemplate="{DataTemplate local:AbsencesPage}" />
+        </Tab>
+
+        <Tab Title="Profil">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />
+        </Tab>
+    </TabBar>
+
+</Shell>

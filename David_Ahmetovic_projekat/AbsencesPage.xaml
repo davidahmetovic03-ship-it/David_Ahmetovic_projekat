@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="David_Ahmetovic_projekat.AbsencesPage"
+             Title="Evidencija Izostanaka"
+             BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="15" RowSpacing="15">
+
+        <!-- Sumarni Prikaz Izostanaka -->
+        <Grid Grid.Row="0" ColumnDefinitions="*, *, *" ColumnSpacing="10">
+            <!-- Opravdani -->
+            <Border Grid.Column="0" BackgroundColor="#34C759" Padding="10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Label Text="Opravdani" TextColor="White" FontSize="12" HorizontalOptions="Center" />
+                    <Label x:Name="ExcusedCountLabel" Text="0" TextColor="White" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Neopravdani -->
+            <Border Grid.Column="1" BackgroundColor="#FF3B30" Padding="10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Label Text="Neopravdani" TextColor="White" FontSize="12" HorizontalOptions="Center" />
+                    <Label x:Name="UnexcusedCountLabel" Text="0" TextColor="White" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Na čekanju -->
+            <Border Grid.Column="2" BackgroundColor="#FF9500" Padding="10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Label Text="Na čekanju" TextColor="White" FontSize="12" HorizontalOptions="Center" />
+                    <Label x:Name="PendingCountLabel" Text="0" TextColor="White" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+
+        <!-- Lista Izostanaka -->
+        <CollectionView x:Name="AbsencesCollectionView" Grid.Row="1">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="Nemate zabilježenih izostanaka." FontSize="16" TextColor="Gray" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,5" Padding="12" Stroke="#E0E0E0" StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+
+                        <Grid ColumnDefinitions="*, Auto">
+                            <!-- Informacije o izostanku -->
+                            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="{Binding SubjectName}" FontAttributes="Bold" FontSize="16" TextColor="#512BD4" />
+                                    <Label Text="{Binding Status}" 
+                                           FontSize="12" 
+                                           FontAttributes="Bold" 
+                                           TextColor="White" 
+                                           BackgroundColor="#666666" 
+                                           Padding="6,2" 
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                                <Label Text="{Binding Date, StringFormat='Datum: {0:dd.MM.yyyy.}'}" FontSize="13" TextColor="#333333" />
+                                <Label Text="{Binding Reason, StringFormat='Razlog: {0}'}" FontSize="13" TextColor="#666666" />
+                            </VerticalStackLayout>
+
+                            <!-- Akciona dugmad u desnoj koloni -->
+                            <HorizontalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                                <Button Text="Uredi" 
+                                        Clicked="OnEditAbsenceClicked" 
+                                        CommandParameter="{Binding .}" 
+                                        BackgroundColor="#2E7D32" 
+                                        TextColor="White" 
+                                        CornerRadius="8"
+                                        FontSize="12"
+                                        HeightRequest="35" />
+
+                                <Button Text="Obriši" 
+                                        Clicked="OnDeleteAbsenceClicked" 
+                                        CommandParameter="{Binding .}" 
+                                        BackgroundColor="#D32F2F" 
+                                        TextColor="White" 
+                                        CornerRadius="8"
+                                        FontSize="12"
+                                        HeightRequest="35" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Dugme za dodavanje -->
+        <Button Grid.Row="2" 
+                Text="+ Evidentiraj Izostanak" 
+                Clicked="OnAddAbsenceClicked" 
+                BackgroundColor="#512BD4" 
+                TextColor="White" 
+                HeightRequest="50" 
+                CornerRadius="10" />
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="David_Ahmetovic_projekat.CalendarPage"
+             Title="Kalendar i Obaveze"
+             BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="15" RowSpacing="10">
+
+        <!-- Kalendar za izbor datuma -->
+        <DatePicker Grid.Row="0"
+                    x:Name="EventDatePicker"
+                    DateSelected="OnDateSelected"
+                    Format="D"
+                    FontSize="16"
+                    TextColor="#512BD4"
+                    HorizontalOptions="FillAndExpand" />
+
+        <!-- Lista Događaja za Izabrani Datum -->
+        <CollectionView x:Name="EventsCollectionView" Grid.Row="1">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="Nema zakazanih obaveza za izabrani datum."
+                           FontSize="16"
+                           TextColor="Gray"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,5" Padding="12" Stroke="#E0E0E0" StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="*, Auto">
+                            <!-- Informacije o događaju -->
+                            <VerticalStackLayout Grid.Column="0" Spacing="5" VerticalOptions="Center">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="{Binding Type}" 
+                                           FontAttributes="Bold" 
+                                           FontSize="12" 
+                                           TextColor="White" 
+                                           BackgroundColor="#512BD4" 
+                                           Padding="6,2" />
+
+                                    <Label Text="{Binding SubjectName}" 
+                                           FontSize="14" 
+                                           FontAttributes="Italic" 
+                                           TextColor="#666666" 
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                                <Label Text="{Binding Title}" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#333333" />
+
+                                <Label Text="{Binding Description}" 
+                                       FontSize="13" 
+                                       TextColor="#555555" 
+                                       IsVisible="{Binding Description, Converter={StaticResource Key=StringNotNullOrEmptyConverter}}" />
+                            </VerticalStackLayout>
+
+                            <!-- Akcije: Uredi i Obriši -->
+                            <HorizontalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                                <Button Text="Uredi" 
+                                        Clicked="OnEditEventClicked" 
+                                        CommandParameter="{Binding .}" 
+                                        BackgroundColor="#512BD4" 
+                                        TextColor="White" 
+                                        HeightRequest="35" 
+                                        FontSize="12" 
+                                        CornerRadius="8" />
+
+                                <Button Text="Obriši" 
+                                        Clicked="OnDeleteEventClicked" 
+                                        CommandParameter="{Binding .}" 
+                                        BackgroundColor="#D32F2F" 
+                                        TextColor="White" 
+                                        HeightRequest="35" 
+                                        FontSize="12" 
+                                        CornerRadius="8" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Dugme za Dodavanje Obaveze -->
+        <Button Grid.Row="2" 
+                Text="+ Dodaj Obavezu / Kontrolni" 
+                Clicked="OnAddEventClicked" 
+                BackgroundColor="#512BD4" 
+                TextColor="White" 
+                HeightRequest="50" 
+                CornerRadius="10" />
+
+    </Grid>
+
+</ContentPage>

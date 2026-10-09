@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+	<!-- Zelena pozadina -->
+	<rect width="512" height="512" rx="100" fill="#2E7D32"/>
+
+	<!-- Akademska kapa -->
+	<path fill="#FFFFFF" d="M256 120 L80 200 L256 280 L432 200 Z" />
+	<path fill="#FFFFFF" d="M140 238 V300 C140 330, 372 330, 372 300 V238" stroke="#FFFFFF" stroke-width="4" />
+	<path fill="#FFD700" d="M410 210 V310" stroke="#FFD700" stroke-width="8" stroke-linecap="round" />
+	<circle cx="410" cy="315" r="12" fill="#FFD700" />
+
+	<!-- Tekst SMART -->
+	<text x="50%" y="420"
+          font-family="Arial, sans-serif"
+          font-size="95"
+          font-weight="bold"
+          fill="#FFFFFF"
+          text-anchor="middle">
+		SMART
+	</text>
+</svg>

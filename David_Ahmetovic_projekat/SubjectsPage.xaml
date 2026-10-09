@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="David_Ahmetovic_projekat.SubjectsPage"
+             Title="Moji Predmeti"
+             BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="*, Auto" ColumnDefinitions="*, *" Padding="15" RowSpacing="10" ColumnSpacing="10">
+
+        <!-- Lista Predmeta -->
+        <CollectionView x:Name="SubjectsCollectionView" Grid.Row="0" Grid.ColumnSpan="2">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="Nemate unesenih predmeta." FontSize="16" TextColor="Gray" HorizontalOptions="Center" />
+                    <Label Text="Kliknite na dugme ispod da dodate prvi predmet." FontSize="14" TextColor="Gray" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,5" Padding="15" Stroke="#E0E0E0" StrokeThickness="1">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="5">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="#2E7D32" Grid.Column="0" VerticalOptions="Center" />
+
+                                <HorizontalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                                    <Button Text="Uredi" 
+                                            Clicked="OnEditSubjectClicked" 
+                                            CommandParameter="{Binding .}" 
+                                            BackgroundColor="#2E7D32" 
+                                            TextColor="White" 
+                                            CornerRadius="8"
+                                            FontSize="12"
+                                            HeightRequest="35" />
+
+                                    <Button Text="Obriši" 
+                                            Clicked="OnDeleteSubjectClicked" 
+                                            CommandParameter="{Binding .}" 
+                                            BackgroundColor="#D32F2F" 
+                                            TextColor="White" 
+                                            CornerRadius="8"
+                                            FontSize="12"
+                                            HeightRequest="35" />
+                                </HorizontalStackLayout>
+                            </Grid>
+
+                            <Label Text="{Binding TeacherName, StringFormat='Profesor: {0}'}" FontSize="14" TextColor="#333333" />
+                            <Label Text="{Binding Classroom, StringFormat='Učionica / Kabinet: {0}'}" FontSize="13" TextColor="#666666" />
+                            <Label Text="{Binding OpenDoors, StringFormat='Otvorena vrata: {0}'}" FontSize="13" TextColor="#666666" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Dugmad na dnu -->
+        <Button Grid.Row="1" Grid.Column="0" 
+                Text="+ Dodaj Predmet" 
+                Clicked="OnAddSubjectClicked" 
+                BackgroundColor="#2E7D32" 
+                TextColor="White" 
+                HeightRequest="50" 
+                CornerRadius="10" />
+
+        <Button Grid.Row="1" Grid.Column="1" 
+                Text="Ocene &amp; Prosek" 
+                Clicked="OnOpenGradesClicked" 
+                BackgroundColor="#2B88D4" 
+                TextColor="White" 
+                HeightRequest="50" 
+                CornerRadius="10" />
+    </Grid>
+
+</ContentPage>

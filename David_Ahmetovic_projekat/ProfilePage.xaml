@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="David_Ahmetovic_projekat.ProfilePage"
+             Title="Moj Profil"
+             BackgroundColor="#F5F5F5">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+
+            <Frame CornerRadius="100"
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   HorizontalOptions="Center"
+                   BackgroundColor="#512BD4"
+                   Padding="0">
+
+                <Label Text="🎓"
+                       FontSize="50"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Frame>
+
+            <Label Text="Školski Profil Učenika"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#333333" />
+
+            <Border StrokeShape="RoundRectangle 12"
+                    Stroke="#E0E0E0"
+                    BackgroundColor="White"
+                    Padding="20">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Ime i Prezime:"
+                               FontSize="12"
+                               TextColor="#888888" />
+
+                        <Label x:Name="FullNameLabel"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#333333" />
+                    </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Color="#F0F0F0" />
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Korisničko ime:"
+                               FontSize="12"
+                               TextColor="#888888" />
+
+                        <Label x:Name="UsernameLabel"
+                               FontSize="16"
+                               TextColor="#333333" />
+                    </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Color="#F0F0F0" />
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Datum rođenja:"
+                               FontSize="12"
+                               TextColor="#888888" />
+
+                        <Label x:Name="BirthDateLabel"
+                               FontSize="16"
+                               TextColor="#333333" />
+                    </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Color="#F0F0F0" />
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Škola:"
+                               FontSize="12"
+                               TextColor="#888888" />
+
+                        <Label x:Name="SchoolNameLabel"
+                               FontSize="16"
+                               TextColor="#333333" />
+                    </VerticalStackLayout>
+
+                    <BoxView HeightRequest="1" Color="#F0F0F0" />
+
+                    <Grid ColumnDefinitions="*,*">
+
+                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                            <Label Text="Školska godina:"
+                                   FontSize="12"
+                                   TextColor="#888888" />
+
+                            <Label x:Name="SchoolYearLabel"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="#333333" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Razred/Odeljenje:"
+                                   FontSize="12"
+                                   TextColor="#888888" />
+
+                            <Label x:Name="GradeLevelLabel"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="#333333" />
+                        </VerticalStackLayout>
+
+                    </Grid>
+
+                    <BoxView HeightRequest="1" Color="#F0F0F0" />
+
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Smer / Profil:"
+                               FontSize="12"
+                               TextColor="#888888" />
+
+                        <Label x:Name="FieldOfStudyLabel"
+                               FontSize="16"
+                               TextColor="#333333" />
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Izmjeni Podatke"
+                    Clicked="OnEditProfileClicked"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="45" />
+
+            <Button Text="Odjavi se"
+                    Clicked="OnLogoutClicked"
+                    BackgroundColor="#D32F2F"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="45" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
